@@ -177,7 +177,7 @@ func parseTemplate(argTemplate string) (content string, err error) {
 	case TypeString:
 		content = SubStringAfter(argTemplate, 2)
 		logPrintf("%20v : %v", "template type", "string")
-		logPrintf("%20v : %v", "template content", "\n"+content)
+		logPrintf("%20v : \n%v", "template content", content)
 	case TypeFile:
 		filepath := SubStringAfter(argTemplate, 2)
 		logPrintf("%20v : %v", "template type", "file")
@@ -187,9 +187,8 @@ func parseTemplate(argTemplate string) (content string, err error) {
 			return "", err
 		}
 		content = string(filebytes)
-		logPrintf("%20v : %v", "template content", "\n"+content)
+		logPrintf("%20v : \n%v", "template content", content)
 	}
-	logPrintf("***************************************************************************")
 	return content, nil
 }
 
@@ -203,7 +202,7 @@ func parseJsondata(argJsondata string) (obj map[string]interface{}, err error) {
 	case TypeString:
 		content = SubStringAfter(argJsondata, 2)
 		logPrintf("%20v : %v", "jsondata type", "string")
-		logPrintf("%20v : %v", "jsondata content", "\n"+content)
+		logPrintf("%20v : \n%v", "jsondata content", content)
 	case TypeFile:
 		filepath := SubStringAfter(argJsondata, 2)
 		logPrintf("%20v : %v", "jsondata type", "file")
@@ -213,15 +212,14 @@ func parseJsondata(argJsondata string) (obj map[string]interface{}, err error) {
 			return nil, err
 		}
 		content = string(filebytes)
-		logPrintf("%20v : %v", "jsondata content", "\n"+content)
+		logPrintf("%20v : \n%v", "jsondata content", content)
 	}
 	// json转map
 	obj, err = JsonToMap(content)
 	if err != nil {
 		return nil, err
 	}
-	logPrintf("%20v : %v", "object content", obj)
-	logPrintf("***************************************************************************")
+	logPrintf("%20v : \n%v", "object content", obj)
 	return obj, nil
 }
 
@@ -235,7 +233,7 @@ func parseYamldata(argYamldata string) (obj map[string]interface{}, err error) {
 	case TypeString:
 		content = SubStringAfter(argYamldata, 2)
 		logPrintf("%20v : %v", "yamldata type", "string")
-		logPrintf("%20v : %v", "yamldata content", content)
+		logPrintf("%20v : \n%v", "yamldata content", content)
 	case TypeFile:
 		filepath := SubStringAfter(argYamldata, 2)
 		logPrintf("%20v : %v", "yamldata type", "file")
@@ -245,15 +243,14 @@ func parseYamldata(argYamldata string) (obj map[string]interface{}, err error) {
 			return nil, err
 		}
 		content = string(filebytes)
-		logPrintf("%20v : %v", "yamldata content", content)
+		logPrintf("%20v : \n%v", "yamldata content", content)
 	}
 	// yaml转map
 	obj, err = YamlToMap(content)
 	if err != nil {
 		return nil, err
 	}
-	logPrintf("%20v : %v", "object content", obj)
-	logPrintf("***************************************************************************")
+	logPrintf("%20v : \n%v", "object content", obj)
 	return obj, nil
 }
 
