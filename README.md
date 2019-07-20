@@ -2,6 +2,7 @@
 gotmpl for json and yaml
 
 Usage of this command tool:
+```
  -h, --help     Show help info.
  -j, --jsondata=s:string|f:filepath
                 Jsondata info, support string and file, start with [s:] or [f:].
@@ -17,3 +18,4 @@ Usage of this command tool:
  -y, --yamldata=s:string|f:filepath
                 Yamldata info, support string and file, start with [s:] or [f:].
                 Format:s:string|f:filepath
+```
