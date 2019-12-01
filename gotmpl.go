@@ -136,16 +136,21 @@ func main() {
 		defer func() {
 			_ = outfile.Close()
 		}()
-		writers := []io.Writer{
-			outfile,
-			os.Stdout,
+		//writers := []io.Writer{
+		//	outfile,
+		//	os.Stdout,
+		//}
+		//outwriter = io.MultiWriter(writers...)
+		if argVerbose {
+			outwriter = io.MultiWriter(outfile, os.Stdout)
+		} else {
+			outwriter = io.MultiWriter(outfile)
 		}
-		outwriter = io.MultiWriter(writers...)
 	} else {
-		writers := []io.Writer{
-			os.Stdout,
-		}
-		outwriter = io.MultiWriter(writers...)
+		//writers := []io.Writer{
+		//	os.Stdout,
+		//}
+		outwriter = io.MultiWriter(os.Stdout)
 	}
 	logPrintf("%20v : %v", "out file content", "\n")
 
